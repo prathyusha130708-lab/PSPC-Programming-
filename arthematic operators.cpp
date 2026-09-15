@@ -1,29 +1,39 @@
 #include <stdio.h>
-#include <math.h>
 
 int main() {
-    float a, b, c, discriminant, root1, root2;
+    char op;
+    float a, b, res;
+    printf("Enter the operator (+, -, *, /): ");
+    scanf(" %c", &op);
+    printf("Enter two values: ");
+    scanf("%f %f", &a, &b);
+    switch(op) {
+        case '+':
+            res = a + b;
+            printf("Result: %.2f + %.2f = %.2f\n", a, b, res);
+            break;
 
-    printf("Enter a, b and c: ");
-    scanf("%f %f %f", &a, &b, &c);
+        case '-':
+            res = a - b;
+            printf("Result: %.2f - %.2f = %.2f\n", a, b, res);
+            break;
 
-    discriminant = b * b - 4 * a * c;
+        case '*':
+            res = a * b;
+            printf("Result: %.2f * %.2f = %.2f\n", a, b, res);
+            break;
 
-    if (discriminant > 0) {
-        root1 = (-b + sqrt(discriminant)) / (2 * a);
-        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        case '/':
+            if(b != 0) {
+                res = a / b;
+                printf("Result: %.2f / %.2f = %.2f\n", a, b, res);
+            } else {
+                printf("Error: Division by zero is undefined.\n");
+            }
+            break;
 
-        printf("Root 1 = %.2f\n", root1);
-        printf("Root 2 = %.2f\n", root2);
-    }
-    else if (discriminant == 0) {
-        root1 = -b / (2 * a);
-
-        printf("Both roots are equal.\n");
-        printf("Root = %.2f\n", root1);
-    }
-    else {
-        printf("Roots are complex and imaginary.\n");
+        default:
+            printf("Error: Invalid operator.\n");
     }
 
     return 0;
